@@ -8,5 +8,6 @@ const transactionController = new TransactionController
 transactionsRoutes.post('/create', authToken, transactionController.create)
 transactionsRoutes.get('/show', authToken, transactionController.index)
 transactionsRoutes.put('/update', authToken, transactionController.update)
+transactionsRoutes.delete('/delete', authToken, transactionController.delete)
 
 module.exports = transactionsRoutes

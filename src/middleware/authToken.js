@@ -11,7 +11,7 @@ async function authToken(request, response, next){
             request.body = {
                 ...request.body,
                 token,
-                id: Number(id)
+                user_id: Number(id)
             }
             return next()
         } catch (error) {
