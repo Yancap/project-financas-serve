@@ -25,7 +25,7 @@ const config = require('../config')
         
     }
     async show(request, response){
-        const {email, password, id } = request.body
+        const {email, password, user_id: id } = request.body
         if (id) {
             const { token } = request.body
             const data = await knexConnection('users').where({id}).first()

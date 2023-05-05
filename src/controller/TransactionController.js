@@ -4,7 +4,6 @@ class TransactionController{
     async index(request, response){
         const { user_id: id } = request.body
         const transactions = await knexConnection('transactions').where('user_id', id)
-        console.log(transactions);
         return response.json(transactions)
     }
     async create(request, response){
@@ -22,7 +21,14 @@ class TransactionController{
         return response.json({message: 'OK'})
     }
     async delete(request, response){
-
+        const { target: id } = request.headers
+        const { user_id } = request.body
+        try {
+            await knexConnection('transactions').where({user_id, id}).delete()
+         } catch (error) {
+             return response.json({error: true, message: error})
+         }
+         return response.json({message: 'OK'})
     }
 }
 
