@@ -36,7 +36,6 @@ const config = require('../config')
             })
         } else {
             const data = await knexConnection('users').where({email}).first()
-            console.log( await knexConnection('users'))
             if (!data || !(await compare(password, data.password))) {
                 return response.json({error: "Email Senha ou Email Incorreto"})
             }
