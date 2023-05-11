@@ -26,8 +26,10 @@ const config = require('../config')
     }
     async show(request, response){
         const {email, password, user_id: id } = request.body
+        console.log("request.body",request.body);
         if (id) {
             const { token } = request.body
+            console.log("Tem ID: ", token);
             const data = await knexConnection('users').where({id}).first()
             return response.json({
                 message: 'OK',
@@ -36,6 +38,7 @@ const config = require('../config')
             })
         } else {
             const data = await knexConnection('users').where({email}).first()
+            console.log("Dados: " + data);
             if (!data || !(await compare(password, data.password))) {
                 return response.json({error: "Email Senha ou Email Incorreto"})
             }
