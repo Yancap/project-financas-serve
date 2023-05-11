@@ -3,10 +3,8 @@ const config = require('../config');
 
 async function authToken(request, response, next){
     const head  = request.headers.authorization
-    console.log("Headers: ", request.headers.authorization);
     if ( head ) {
         const [, token ] = head.split(" ")
-        console.log("Token: ", token);
         if (!token) return next()
         try {
             const {sub: id} = verify(token, config.jwt.secret)
